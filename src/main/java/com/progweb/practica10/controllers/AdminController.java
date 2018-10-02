@@ -36,8 +36,8 @@ public class AdminController {
     }
 
     @Secured({"ROLE_Admin"})
-    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
-    public ModelAndView saveNewUser(){
+    @RequestMapping(value = "/createUser", method = RequestMethod.GET)
+    public ModelAndView getSaveNewUser(){
 
         return new ModelAndView("createUser");
     }
@@ -45,13 +45,17 @@ public class AdminController {
     @Secured({"ROLE_Admin"})
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public String saveNewUser(@RequestParam String username, @RequestParam String firstName, @RequestParam String lastName,
-                              @RequestParam String city, @RequestParam String password, @RequestParam boolean active, @RequestParam String role){
+                              @RequestParam String city, @RequestParam String password, @RequestParam String active, @RequestParam String role){
         User user = new User();
         user.setUsername(username);
         user.setPassword(bCryptPasswordEncoder.encode(password));
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setActive(active);
+        if(active.equalsIgnoreCase("active")){
+            user.setActive(true);
+        }else if(active.equalsIgnoreCase("no_active")){
+            user.setActive(false);
+        }
 
         Role role1 = roleRepository.findByRoleName(role);
         if(role1 != null){
