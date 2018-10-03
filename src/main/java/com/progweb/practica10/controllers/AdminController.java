@@ -44,8 +44,8 @@ public class AdminController {
 
 //    @Secured({"ROLE_Admin"})
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
-    public String saveNewUser(@RequestParam String username, @RequestParam String firstName, @RequestParam String lastName,
-                              @RequestParam String city, @RequestParam String password, @RequestParam String active, @RequestParam String role){
+    public String saveNewUser(@RequestParam(value = "username") String username, @RequestParam(value = "firstName") String firstName, @RequestParam(value = "lastName") String lastName,
+                              @RequestParam(value = "password") String password, @RequestParam(value = "status") String active, @RequestParam(value = "role") String role){
         User user = new User();
         user.setUsername(username);
         user.setPassword(bCryptPasswordEncoder.encode(password));

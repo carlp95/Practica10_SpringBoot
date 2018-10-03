@@ -38,7 +38,16 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <label for="status"> Nivel Educativo</label>
+                                <label for="role"> Rol</label>
+                                <select class="form-control" id="role" name="role">
+                                    <option value="admin">Administrador</option>
+                                    <option value="seller">Vendedor</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label for="status"> Estado</label>
                                 <select class="form-control" id="status" name="status">
                                     <option value="active">Activo</option>
                                     <option value="no_active">No Activo</option>
