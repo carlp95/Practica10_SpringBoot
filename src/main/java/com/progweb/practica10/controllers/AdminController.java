@@ -29,20 +29,20 @@ public class AdminController {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    @Secured({"ROLE_Admin"})
+    /*@Secured({"ROLE_Admin"})
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession httpSession){
         return "index";
     }
-
-    @Secured({"ROLE_Admin"})
+*/
+//    @Secured({"ROLE_Admin"})
     @RequestMapping(value = "/createUser", method = RequestMethod.GET)
     public ModelAndView getSaveNewUser(){
 
         return new ModelAndView("createUser");
     }
 
-    @Secured({"ROLE_Admin"})
+//    @Secured({"ROLE_Admin"})
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public String saveNewUser(@RequestParam String username, @RequestParam String firstName, @RequestParam String lastName,
                               @RequestParam String city, @RequestParam String password, @RequestParam String active, @RequestParam String role){

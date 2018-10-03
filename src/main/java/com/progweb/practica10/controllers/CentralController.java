@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -17,8 +18,8 @@ public class CentralController {
     private DeviceServices deviceServices;
 
     @RequestMapping(value = "/")
-    public String home(){
-        return "homePage";
+    public ModelAndView home(){
+        return new ModelAndView("homePage");
     }
 
     @RequestMapping(value = "/devices")
