@@ -14,7 +14,7 @@
                 <div class="card-body">
                 <#--<h4 class="card-title" align="center" style="font-family: leaf,serif; font-size: 50px; color: #316a3a">BanaGreen</h4>-->
 
-                    <form id="editCustomerForm" action="/customer/editcustomer" method="POST" autocomplete="off">
+                    <form id="editCustomerForm" action="/customer/create" method="POST" autocomplete="off">
 
                         <div class="form-group">
                             <label for="identification"> Cédula</label>
@@ -33,14 +33,14 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-group row">
                             <div class="form-group col-md-6">
                                 <label for="phone"> Teléfono</label>
-                                <input class="form-control" name="phone" maxlength="10" type="tel">
+                                <input class="form-control" id="phone" name="phone" maxlength="10" type="tel">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="cellPhone"> Celular</label>
-                                <input class="form-control" name="cellPhone" maxlength="10" type="tel">
+                                <input class="form-control" id="cellPhone" name="cellPhone" maxlength="10" type="tel">
                             </div>
                         </div>
 
@@ -51,7 +51,7 @@
 
                         <div class="form-group">
                             <div class="autocomplete">
-                                <label for="city">Ciudad</label>
+                                <label for="citylist">Ciudad</label>
                                 <input class="form-control" id="citylist" name="city" type="text">
                             </div>
                         </div>

@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <#--<h4 class="card-title" align="center" style="font-family: leaf,serif; font-size: 50px; color: #316a3a">BanaGreen</h4>-->
 
-                    <form id="createUserForm" action="/admin/createUser" method="POST" autocomplete="off">
+                    <form id="createUserForm" action="/admin/create" method="POST" autocomplete="off">
 
                         <div class="form-row">
                             <div class="form-group col-md-6">

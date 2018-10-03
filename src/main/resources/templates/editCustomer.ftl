@@ -14,7 +14,7 @@
                 <div class="card-body">
                 <#--<h4 class="card-title" align="center" style="font-family: leaf,serif; font-size: 50px; color: #316a3a">BanaGreen</h4>-->
 
-                    <form id="editCustomerForm" action="/customer/editcustomer" method="POST" autocomplete="off">
+                    <form id="editCustomerForm" action="/customer/edit" method="POST" autocomplete="off">
 
                         <div class="form-group">
                             <label for="identification"> Cédula</label>
