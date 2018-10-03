@@ -32,7 +32,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     // https://mvnrepository.com/artifact/com.h2database/h2
     compile group: 'com.h2database', name: 'h2', version: '1.4.192'
-//    runtime('com.h2database:h2')
+//    compile("org.springframework:spring-jdbc")
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
 }
