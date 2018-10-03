@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Administrar Cliente</title>
+    <title>Crear Cliente</title>
 </head>
 <body>
 <div class="container">
@@ -18,7 +18,7 @@
 
                         <div class="form-group">
                             <label for="identification"> Cédula</label>
-                            <input id="identification" class="form-control" name="identification" placeholder="031-000000-1" type="text">
+                            <input id="identification" class="form-control" name="identification" placeholder="031-0000000-1" maxlength="13" type="text">
                         </div>
 
 
@@ -36,11 +36,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="phone"> Teléfono</label>
-                                <input class="form-control" name="phone" type="tel">
+                                <input class="form-control" name="phone" maxlength="10" type="tel">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="cellPhone"> Celular</label>
-                                <input class="form-control" name="cellPhone" type="tel">
+                                <input class="form-control" name="cellPhone" maxlength="10" type="tel">
                             </div>
                         </div>
 
@@ -67,6 +67,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript" src="/js/city.js"></script>
 </body>
 </html>

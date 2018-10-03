@@ -18,6 +18,32 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
+
+    @RequestMapping(value = "/createcustomer", method = RequestMethod.GET)
+    public ModelAndView getCreateCustomer(Model model){
+
+        return new ModelAndView("createCustomer");
+    }
+
+    @RequestMapping(value = "/createcustomer", method = RequestMethod.POST)
+    public String createCustomer(@RequestParam(value = "identification") String id, @RequestParam(value = "firstName") String firstName,
+                                       @RequestParam(value = "lastName") String lastName, @RequestParam(value = "phone") String phone,
+                                       @RequestParam(value = "cellPhone") String cellPhone, @RequestParam(value = "address") String address,
+                                       @RequestParam(value = "city") String city){
+        Customer customer = new Customer();
+
+        customer.setId(id);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
+        customer.setAddress(address);
+        customer.setPhone(phone);
+        customer.setCellPhone(cellPhone);
+        customer.setCity(city);
+        customerRepository.save(customer);
+
+        return "redirect:/customerList";
+    }
+
     @RequestMapping(value = "/customerlist", method = RequestMethod.GET)
     public ModelAndView getCustomers(Model model){
 
@@ -31,11 +57,11 @@ public class CustomerController {
 
         model.addAttribute("customer", customerRepository.findCustomerById(id));
 
-        return new ModelAndView("editcustomer");
+        return new ModelAndView("editCustomer");
     }
 
     @RequestMapping(value = "/editcustomer", method = RequestMethod.POST)
-    public String editCustomer(@RequestParam(value = "id") String id, @RequestParam(value = "firstName") String firstName,
+    public String editCustomer(@RequestParam(value = "identification") String id, @RequestParam(value = "firstName") String firstName,
                                @RequestParam(value = "lastName") String lastName, @RequestParam(value = "phone") String phone,
                                @RequestParam(value = "cellPhone") String cellPhone, @RequestParam(value = "address") String address,
                                @RequestParam(value = "city") String city){
