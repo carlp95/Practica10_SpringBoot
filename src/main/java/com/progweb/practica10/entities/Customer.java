@@ -11,6 +11,8 @@ public class Customer {
 
     private String firstName;
     private String lastName;
+    private String phone;
+    private String cellPhone;
     private String address;
     private String city;
 
@@ -23,10 +25,12 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String id, String firstName, String lastName, String address, String city, Image customerPhoto, List<Bill> bills) {
+    public Customer(String id, String firstName, String lastName, String phone, String cellPhone, String address, String city, Image customerPhoto, List<Bill> bills) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phone = phone;
+        this.cellPhone = cellPhone;
         this.address = address;
         this.city = city;
         this.customerPhoto = customerPhoto;
@@ -55,6 +59,22 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getCellPhone() {
+        return cellPhone;
+    }
+
+    public void setCellPhone(String cellPhone) {
+        this.cellPhone = cellPhone;
     }
 
     public String getAddress() {

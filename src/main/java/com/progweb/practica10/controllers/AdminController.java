@@ -65,6 +65,11 @@ public class AdminController {
             roleRepository.save(newRole);
         }
         userRepository.save(user);
-        return "";
+        return "redirect:/userList";
+    }
+    @RequestMapping(value = "/userlist", method = RequestMethod.GET)
+    public ModelAndView getUserList(Model model){
+
+        return new ModelAndView("userList");
     }
 }
