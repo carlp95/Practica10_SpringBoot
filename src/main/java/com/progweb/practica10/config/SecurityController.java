@@ -31,15 +31,16 @@ public class SecurityController extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-                .antMatchers("/**","/css/**","/js/**").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                    .antMatchers("/","/css/**","/js/**").permitAll()
+                    .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
+                    .formLogin()
+                        .loginPage("/login")
+                        .failureUrl("/login?error")
+                        .permitAll()
                 .and()
-                .logout()
-                    .permitAll();
+                    .logout()
+                        .permitAll();
 
         http.csrf().disable();
         http.headers().frameOptions().disable();

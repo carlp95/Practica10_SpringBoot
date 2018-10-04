@@ -27,7 +27,7 @@ public class SecurityServices implements UserDetailsService {
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public void CreateAdmin(){
-        Role role = new Role("Admin");
+        Role role = new Role("ROLE_ADMIN");
         roleRepository.save(role);
 
         User user = new User();
