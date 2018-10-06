@@ -5,6 +5,7 @@ import com.progweb.practica10.repositories.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +45,7 @@ public class DeviceController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView getEditDevice(@RequestParam(value = "id") long id, Model model){
+    public ModelAndView getEditDevice(@PathVariable(value = "id") long id, Model model){
         Device device = deviceRepository.findDeviceById(id);
         model.addAttribute("device", device);
         return new ModelAndView("editDevice");

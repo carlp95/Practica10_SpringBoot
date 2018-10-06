@@ -40,8 +40,37 @@
                             <div class="col-sm-12">
                                 <label for="category"> Categoría</label>
                                 <select class="form-control" id="category" name="category">
-                                    <option value="admin">Administrador</option>
-                                    <option value="seller">Vendedor</option>
+                                    <#if device.category == "PC y Portátiles">
+                                        <option value="PC y Portátiles" selected="selected">PC Y Portátiles</option>
+                                        <option value="Hogar">Hogar</option>
+                                        <option value="Celulares">Celulares</option>
+                                        <option value="Ferretería">Ferretería</option>
+                                        <option value="Gadgets">Gadgets</option>
+                                    <#elseif device.category == "Hogar">
+                                        <option value="PC y Portátiles">PC Y Portátiles</option>
+                                        <option value="Hogar" selected="selected">Hogar</option>
+                                        <option value="Celulares">Celulares</option>
+                                        <option value="Ferretería">Ferretería</option>
+                                        <option value="Gadgets">Gadgets</option>
+                                    <#elseif device.category == "Celulares">
+                                        <option value="PC y Portátiles">PC Y Portátiles</option>
+                                        <option value="Hogar">Hogar</option>
+                                        <option value="Celulares" selected="selected">Celulares</option>
+                                        <option value="Ferretería">Ferretería</option>
+                                        <option value="Gadgets">Gadgets</option>
+                                    <#elseif device.category == "Ferretería">
+                                        <option value="PC y Portátiles">PC Y Portátiles</option>
+                                        <option value="Hogar">Hogar</option>
+                                        <option value="Celulares">Celulares</option>
+                                        <option value="Ferretería" selected="selected">Ferretería</option>
+                                        <option value="Gadgets">Gadgets</option>
+                                    <#elseif device.category == "Gadgets">
+                                        <option value="PC y Portátiles">PC Y Portátiles</option>
+                                        <option value="Hogar">Hogar</option>
+                                        <option value="Celulares">Celulares</option>
+                                        <option value="Ferretería">Ferretería</option>
+                                        <option value="Gadgets" selected="selected">Gadgets</option>
+                                    </#if>
                                 </select>
                             </div>
                         </div>
@@ -49,8 +78,37 @@
                             <div class="col-sm-12">
                                 <label for="sub_Categoria"> Sub-Categoría</label>
                                 <select class="form-control" id="sub_Categoria" name="sub_Categoria">
-                                    <option value="active">Activo</option>
-                                    <option value="no_active">No Activo</option>
+                                    <#if device.sub_Category == "Portátil">
+                                        <option value="Portátil" selected="selected">Portátil</option>
+                                        <#--<option value="Hogar">Huawei</option>-->
+                                        <#--<option value="Celulares">Celulares</option>-->
+                                        <#--<option value="Ferretería">Ferretería</option>-->
+                                        <#--<option value="Gadgets">Gadgets</option>-->
+                                    <#elseif device.sub_Category == "Celulares">
+                                        <option value="PC y Portátiles">PC Y Portátiles</option>
+                                        <option value="Hogar" selected="selected">Hogar</option>
+                                        <option value="Celulares">Celulares</option>
+                                        <option value="Ferretería">Ferretería</option>
+                                        <option value="Gadgets">Gadgets</option>
+                                    <#elseif device.sub_Category == "Celulares">
+                                        <option value="PC y Portátiles">PC Y Portátiles</option>
+                                        <option value="Hogar">Hogar</option>
+                                        <option value="Celulares" selected="selected">Celulares</option>
+                                        <option value="Ferretería">Ferretería</option>
+                                        <option value="Gadgets">Gadgets</option>
+                                    <#elseif device.sub_Category == "Ferretería">
+                                        <option value="PC y Portátiles">PC Y Portátiles</option>
+                                        <option value="Hogar">Hogar</option>
+                                        <option value="Celulares">Celulares</option>
+                                        <option value="Ferretería" selected="selected">Ferretería</option>
+                                        <option value="Gadgets">Gadgets</option>
+                                    <#elseif device.sub_Category == "Gadgets">
+                                        <option value="PC y Portátiles">PC Y Portátiles</option>
+                                        <option value="Hogar">Hogar</option>
+                                        <option value="Celulares">Celulares</option>
+                                        <option value="Ferretería">Ferretería</option>
+                                        <option value="Gadgets" selected="selected">Gadgets</option>
+                                    </#if>
                                 </select>
                             </div>
                         </div>
