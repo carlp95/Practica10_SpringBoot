@@ -35,14 +35,14 @@ public class AdminController {
         return "index";
     }
 */
-    @Secured({"ROLE_ADMIN"})
+//    @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView getSaveNewUser(){
 
         return new ModelAndView("createUser");
     }
 
-    @Secured({"ROLE_ADMIN"})
+//    @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String saveNewUser(@RequestParam(value = "username") String username, @RequestParam(value = "firstName") String firstName, @RequestParam(value = "lastName") String lastName,
                               @RequestParam(value = "password") String password, @RequestParam(value = "status") String active, @RequestParam(value = "role") String role){
@@ -68,7 +68,7 @@ public class AdminController {
         return "redirect:/userList";
     }
 
-    @Secured({"ROLE_ADMIN"})
+//    @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/userlist", method = RequestMethod.GET)
     public ModelAndView getUserList(Model model){
 
