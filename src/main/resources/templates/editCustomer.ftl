@@ -18,41 +18,41 @@
 
                         <div class="form-group">
                             <label for="identification"> Cédula</label>
-                            <input id="identification" class="form-control" name="identification" placeholder="031-000000-1" type="text">
+                            <input id="identification" class="form-control" name="identification" type="text" value="${customer.id}">
                         </div>
 
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="firstName"> Nombres</label>
-                                <input class="form-control fullName" name="firstName" placeholder="Nombres" type="text">
+                                <input class="form-control fullName" name="firstName" type="text" value="${customer.firstName}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="lastName"> Apellidos</label>
-                                <input class="form-control fullName" name="lastName" placeholder="Apellidos" type="text">
+                                <input class="form-control fullName" name="lastName" type="text" value="${customer.lastName}">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="phone"> Teléfono</label>
-                                <input class="form-control" name="phone" type="tel">
+                                <input class="form-control" name="phone" type="tel" value="${customer.phone}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="cellPhone"> Celular</label>
-                                <input class="form-control" name="cellPhone" type="tel">
+                                <input class="form-control" name="cellPhone" type="tel" value="${customer.cellPhone}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="address">Dirección</label>
-                            <textarea class="form-control" id="address" rows="3"></textarea>
+                            <textarea class="form-control" id="address" rows="3" content="${customer.address}"></textarea>
                         </div>
 
                         <div class="form-group">
                             <div class="autocomplete">
                                 <label for="city">Ciudad</label>
-                                <input class="form-control" id="citylist" name="city" type="text">
+                                <input class="form-control" id="citylist" name="city" type="text" value="${customer.city}">
                             </div>
                         </div>
 

@@ -8,7 +8,7 @@ import java.util.List;
 public interface DeviceRepository extends JpaRepository<Device, Long> {
 
     Device findDeviceByName(String name);
-
+    Device findDeviceById(Long id);
     List<Device> findAllByOrderById();
 
     List<Device> findAllByCategory(String category);
