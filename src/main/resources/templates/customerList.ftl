@@ -21,7 +21,8 @@
         <tbody>
             <#list custList as customer>
                 <tr>
-                    <td>${customer.customerPhoto}</td>
+                    <#--<td>${customer.customerPhoto}</td>-->
+                    <td>NULL</td>
                     <td><a href="/customer/edit/${customer.id}">${customer.id}</a></td>
                     <td>${customer.firstName}</td>
                     <td>${customer.lastName}</td>

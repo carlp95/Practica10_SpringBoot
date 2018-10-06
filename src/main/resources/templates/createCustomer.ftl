@@ -46,7 +46,7 @@
 
                         <div class="form-group">
                             <label for="address">Dirección</label>
-                            <textarea class="form-control" id="address" rows="3"></textarea>
+                            <textarea class="form-control" id="address" name="address" rows="3"></textarea>
                         </div>
 
                         <div class="form-group">
