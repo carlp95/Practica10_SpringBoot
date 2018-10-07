@@ -62,13 +62,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Alquilar</a>
+                            <a class="nav-link" href="/rent/create">Alquilar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Facturar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Alquilados</a>
+                            <a class="nav-link" href="/rent/list">Alquilados</a>
                         </li>
                     </ul>
                 </div>
