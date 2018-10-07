@@ -38,7 +38,7 @@
                 <a href="/rent/list"><@spring.message "sidebar.rents" /></a>
             </li>
             <li>
-                <a href="/devices/list"><@spring.message "sidebar.devices" /></a>
+                <a href="/device/list"><@spring.message "sidebar.devices" /></a>
             </li>
         </ul>
 
