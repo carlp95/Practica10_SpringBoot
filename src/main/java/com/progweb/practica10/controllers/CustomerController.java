@@ -3,6 +3,9 @@ package com.progweb.practica10.controllers;
 import com.progweb.practica10.entities.Customer;
 import com.progweb.practica10.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,5 +79,13 @@ public class CustomerController {
         customerRepository.save(customer);
 
         return "redirect:/customer/list";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public ModelAndView listCustomer(Model model) {
+
+        model.addAttribute("customerList", customerRepository.findAll());
+
+        return new ModelAndView("customerList");
     }
 }

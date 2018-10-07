@@ -26,4 +26,6 @@ public class CentralController {
     public List<Device> deviceList(){
         return deviceServices.listAllDevices();
     }
+
+//    @RequestMapping(value = "/")
 }
