@@ -2,7 +2,7 @@
 
 <@b.base>
 <div class="row">
-    <div class="col">
+    <div class="col-sm-6">
         <div class="card mb-2">
             <div class="card-header"><div class="card-title"><@spring.message "content.records.title"/></div></div>
 
@@ -26,11 +26,11 @@
             </div>
         </div>
     </div>
-    <div class="col">
-        <div class="card">
+    <div class="col-sm-6">
+        <div class="card" style="height: 400px;">
             <div class="card-header"><div class="card-title"><@spring.message "content.chart.title"/></div></div>
             <div class="card-body">
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <canvas id="myChart" style="height: 400px"></canvas>
             </div>
         </div>
     </div>
