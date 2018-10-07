@@ -52,7 +52,7 @@ public class CustomerController {
         customer.setCity(city);
         customerRepository.save(customer);
 
-        return "redirect:/customerList";
+        return "redirect:/customer/list";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)

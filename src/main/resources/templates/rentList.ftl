@@ -7,27 +7,30 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th></th>
-            <th>Color</th>
-            <th>Fecha de producido</th>
-            <th>Compañía</th>
-            <th>Unidades Disponibles</th>
-            <th>Costo Diario</th>
-            <th>Categoría</th>
-            <th>Sub Categoría</th>
+            <th>Fecha de Alquiler</th>
+            <th>Hasta</th>
+            <th>Estado</th>
+            <th>Cantidad</th>
+            <th>Dispositivo</th>
+            <th>Cliente</th>
         </tr>
         </thead>
         <tbody>
-            <#list deviceList as device>
+            <#list rents as rent>
             <tr>
-                <td>${device.name}</td>
-                <td><a href="/device/edit/${device.id}">${device.name}</a></td>
-                <td>${device.color}</td>
-                <td>${device.issueDate}</td>
-                <td>${device.company}</td>
-                <td>${device.dailyCost}</td>
-                <td>${device.category}</td>
-                <td>${device.sub_Category}</td>
+                <td>${rent.rentDate}</td>
+                <#--<td><a href="/device/edit/${device.id}">${device.name}</a></td>-->
+                <td>${rent.untilDate}</td>
+                <#if rent.pending == true>
+                    <td>Pendiente</td>
+                <#else >
+                    <td>Regresado/Pagado</td>
+                </#if>
+                <td>${rent.deviceCount}</td>
+                <td>${rent.device.name}</td>
+                <td>${rent.customer.firstName}</td>
+                <#--<td>${device.category}</td>-->
+                <#--<td>${device.sub_Category}</td>-->
             </tr>
             </#list>
         </tbody>

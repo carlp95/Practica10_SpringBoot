@@ -20,11 +20,11 @@
         <tbody>
             <#list deviceList as device>
             <tr>
-                <td>${device.name}</td>
                 <td><a href="/device/edit/${device.id}">${device.name}</a></td>
                 <td>${device.color}</td>
                 <td>${device.issueDate}</td>
                 <td>${device.company}</td>
+                <td>${device.unitsAvailable}</td>
                 <td>${device.dailyCost}</td>
                 <td>${device.category}</td>
                 <td>${device.sub_Category}</td>
