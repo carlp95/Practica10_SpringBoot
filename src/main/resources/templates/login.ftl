@@ -1,12 +1,19 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Práctica 10</title>
+
+    <link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-<#if _csrf??> <#--validando que no sea nula, si lo es, está deshabilitado el csrf -->
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</#if>
-<div class="container">
+    <#if _csrf??> <#--validando que no sea nula, si lo es, está deshabilitado el csrf -->
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </#if>
+
     <div class="card border-success mb-3 mx-auto">
         <div class="card-body">
             <h4 class="card-title" align="center" style="font-family: leaf,serif; font-size: 50px; color: #316a3a">BanaGreen Software</h4>
@@ -31,12 +38,13 @@
                     <button type="submit" class="btn btn-success mx-auto"><i class="fa fa-sign-in-alt"> <strong>Entrar</strong></i></button>
                 </div>
 
-                        <#--<#if loginRedirect?has_content>
-                            <input type="hidden" name="loginRedirect" value="${ loginRedirect }">
-                        </#if>-->
+            <#--<#if loginRedirect?has_content>
+                <input type="hidden" name="loginRedirect" value="${ loginRedirect }">
+            </#if>-->
             </form>
         </div>
     </div>
-</div>
+
 </body>
 </html>
+

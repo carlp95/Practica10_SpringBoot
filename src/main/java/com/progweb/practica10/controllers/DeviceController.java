@@ -17,8 +17,12 @@ import java.util.Date;
 @RequestMapping("/device")
 public class DeviceController {
 
+    private final DeviceRepository deviceRepository;
+
     @Autowired
-    private DeviceRepository deviceRepository;
+    public DeviceController(DeviceRepository deviceRepository) {
+        this.deviceRepository = deviceRepository;
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView getCreateDevice(){

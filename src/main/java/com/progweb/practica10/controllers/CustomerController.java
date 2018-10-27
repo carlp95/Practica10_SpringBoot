@@ -2,17 +2,23 @@ package com.progweb.practica10.controllers;
 
 import com.progweb.practica10.entities.Customer;
 import com.progweb.practica10.repositories.CustomerRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
 @Controller
 @RequestMapping("/customer")
@@ -21,10 +27,12 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    private static String UPLOAD_FOLDER = new File("src/main/resources/static/img").getAbsolutePath();
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getCustomers(Model model){
 
-        model.addAttribute("custList", customerRepository.findAllByOrderById());
+        model.addAttribute("customerList", customerRepository.findAllByOrderById());
 
         return new ModelAndView("customerList");
     }
@@ -41,6 +49,7 @@ public class CustomerController {
                                        @RequestParam(value = "lastName") String lastName, @RequestParam(value = "phone") String phone,
                                        @RequestParam(value = "cellPhone") String cellPhone, @RequestParam(value = "address") String address,
                                        @RequestParam(value = "city") String city){
+
         Customer customer = new Customer();
 
         customer.setId(id);
@@ -50,9 +59,10 @@ public class CustomerController {
         customer.setPhone(phone);
         customer.setCellPhone(cellPhone);
         customer.setCity(city);
+
         customerRepository.save(customer);
 
-        return "redirect:/customer/list";
+        return "redirect:/customer/";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -78,14 +88,37 @@ public class CustomerController {
         customer.setCity(city);
         customerRepository.save(customer);
 
-        return "redirect:/customer/list";
+        return "redirect:/customer/";
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView listCustomer(Model model) {
+    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
+    public ModelAndView listCustomer(@PathVariable String id, Model model) {
 
-        model.addAttribute("customerList", customerRepository.findAll());
+        model.addAttribute("customer", customerRepository.findCustomerById(id));
 
-        return new ModelAndView("customerList");
+        return new ModelAndView("customerDetails");
     }
+
+    @RequestMapping(value = "/profile/{customer-id}", method = RequestMethod.POST)
+    public String getProfiles(@PathVariable("customer-id") String id,
+                              @RequestParam(value = "file", required = false) MultipartFile file) {
+
+        try {
+            byte[] bytes = file.getBytes();
+
+            Path path = Paths.get(UPLOAD_FOLDER + "/" + file.getOriginalFilename());
+            Files.write(path, bytes);
+
+            Customer customer = customerRepository.findCustomerById(id);
+            customer.setPhotoPath(file.getOriginalFilename());
+
+            customerRepository.save(customer);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/customer/edit/" + id;
+    }
+
 }

@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
+    <title>Pr&aacute;ctica 10 Login</title>
 
     <link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/ourStyle.css" class="css">
 
     <!-- Font Awesome JS -->
     <script defer src="/webjars/font-awesome/5.3.1/js/solid.js"></script>
@@ -32,7 +33,7 @@
                 <a href="#"><@spring.message "sidebar.users" /></a>
             </li>
             <li>
-                <a href="/customer/list"><@spring.message "sidebar.customers" /></a>
+                <a href="/customer/"><@spring.message "sidebar.customers" /></a>
             </li>
             <li>
                 <a href="/rent/list"><@spring.message "sidebar.rents" /></a>

@@ -4,7 +4,6 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Foto</th>
             <th>Cédula</th>
             <th>Nombres</th>
             <th>Apellidos</th>
@@ -12,14 +11,12 @@
             <th>Celular</th>
             <th>Dirección</th>
             <th>Ciudad</th>
-            <th>Miscelaneos</th>
+            <th>Opciones</th>
         </tr>
         </thead>
         <tbody>
             <#list customerList as customer>
             <tr>
-            <#--<td>${customer.customerPhoto}</td>-->
-                <td>NULL</td>
                 <td><a href="/customer/edit/${customer.id}">${customer.id}</a></td>
                 <td>${customer.firstName}</td>
                 <td>${customer.lastName}</td>
@@ -27,7 +24,11 @@
                 <td>${customer.cellPhone}</td>
                 <td>${customer.address}</td>
                 <td>${customer.city}</td>
-                <td><a>Ver facturas</a></td>
+                <td>
+                    <a href="/customer/show/${customer.id}" class="btn btn-primary">Show</a>
+                    <a href="/customer/edit/${customer.id}" class="btn btn-secondary">Edit</a>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
             </tr>
             </#list>
         </tbody>

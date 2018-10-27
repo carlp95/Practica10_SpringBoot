@@ -22,5 +22,6 @@ public class Practica10Application {
 
         SecurityServices securityServices = (SecurityServices) applicationContext.getBean("securityServices");
         securityServices.CreateAdmin();
+
     }
 }

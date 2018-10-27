@@ -30,7 +30,7 @@
         <div class="card" style="height: 400px;">
             <div class="card-header"><div class="card-title"><@spring.message "content.chart.title"/></div></div>
             <div class="card-body">
-                <canvas id="myChart" style="height: 400px"></canvas>
+                <canvas id="myChart"></canvas>
             </div>
         </div>
     </div>

@@ -8,3 +8,5 @@ insert into device(id,name,color,issue_Date,company,units_Available,daily_Cost,c
 -- insert into device(name,color,issueDate,company,unitsAvailable,dailyCost,category,sub_Category) values ('','','','',,,'','');
 -- insert into device(name,color,issueDate,company,unitsAvailable,dailyCost,category,sub_Category) values ('','','','',,,'','');
 -- insert into device(name,color,issueDate,company,unitsAvailable,dailyCost,category,sub_Category) values ('','','','',,,'','');
+
+insert into CUSTOMER values ('john', 'Mi casa', '8099342324', 'Salcedo', 'Customer', 'Doe', '8099091234', 'default.png');

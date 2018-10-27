@@ -8,24 +8,27 @@ public class Customer {
 
     @Id
     private String id;
-
     private String firstName;
     private String lastName;
     private String phone;
     private String cellPhone;
     private String address;
     private String city;
+    private String photoPath;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    private Image customerPhoto;
+//    TODO - agregar atributo active para hacer soft-deletes
+
+//    @OneToOne(cascade = CascadeType.REMOVE)
+//    private Image photo;
 
     @OneToMany
     private List<Bill> bills;
 
     public Customer() {
+        this.photoPath = "default.png";
     }
 
-    public Customer(String id, String firstName, String lastName, String phone, String cellPhone, String address, String city, Image customerPhoto, List<Bill> bills) {
+    public Customer(String id, String firstName, String lastName, String phone, String cellPhone, String address, String city, String photo, List<Bill> bills) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -33,7 +36,7 @@ public class Customer {
         this.cellPhone = cellPhone;
         this.address = address;
         this.city = city;
-        this.customerPhoto = customerPhoto;
+        this.photoPath = photo;
         this.bills = bills;
     }
 
@@ -93,12 +96,12 @@ public class Customer {
         this.city = city;
     }
 
-    public Image getCustomerPhoto() {
-        return customerPhoto;
+    public String getPhotoPath() {
+        return photoPath;
     }
 
-    public void setCustomerPhoto(Image customerPhoto) {
-        this.customerPhoto = customerPhoto;
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
     public List<Bill> getBills() {
@@ -108,4 +111,6 @@ public class Customer {
     public void setBills(List<Bill> bills) {
         this.bills = bills;
     }
+
+
 }

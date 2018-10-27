@@ -2,9 +2,23 @@
 
 <@b.base>
 <div class="row justify-content-around">
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-6 mb-4">
         <div class="card border-success mb-3 mx-auto">
             <div class="card-body">
+                <img class="profile-pic" src="/img/${customer.photoPath}" alt="Customer profile">
+                <form method="POST" action="/customer/profile/${customer.id}" enctype="multipart/form-data">
+                    <div class="input-group my-2">
+                        <div class="input-group-prepend">
+                            <input class="input-group-text" id="upload-photo-button" type="submit"/>
+                        </div>
+
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="upload-photo"><@spring.message "content.customer.chooseFile"></@spring.message></label>
+                            <input class="custom-file-input" type="file" name="file" id="upload-photo">
+                        </div>
+                    </div>
+                </form>
+
                 <form id="editCustomerForm" action="/customer/edit" method="POST" autocomplete="off">
 
                     <div class="form-group">
@@ -36,7 +50,7 @@
 
                     <div class="form-group">
                         <label for="address"><@spring.message "content.customer.formLabel.address"/></label>
-                        <textarea class="form-control" id="address" rows="3" content="${customer.address}"></textarea>
+                        <textarea class="form-control" id="address" rows="3">${customer.address}</textarea>
                     </div>
 
                     <div class="form-group">
@@ -61,3 +75,25 @@
 </@b.base>
 
 <script type="text/javascript" src="/js/city.js"></script>
+
+<#--<script>-->
+    <#--function sendImage() {-->
+        <#--var formData = new FormData();-->
+        <#--var fileField = document.getElementById("upload-photo");-->
+
+        <#--formData.append('profile', fileField.files[0]);-->
+
+        <#--fetch('/images/profile/${customer.id}', {-->
+            <#--method: 'POST',-->
+            <#--body: formData-->
+        <#--}).then(function(response) {-->
+            <#--return response.json();-->
+        <#--})-->
+        <#--.then(function(response) {-->
+            <#--console.log('Success:', JSON.stringify(response));-->
+        <#--})-->
+        <#--.catch(function(error) {-->
+            <#--console.error('Error:', error)-->
+        <#--});-->
+    <#--}-->
+<#--</script>-->

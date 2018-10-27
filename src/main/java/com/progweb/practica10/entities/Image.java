@@ -5,8 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+//DEPRECADO
 public class Image {
-
+//
     @Id
     @GeneratedValue
     private Long id;

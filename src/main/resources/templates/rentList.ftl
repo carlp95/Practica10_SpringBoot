@@ -1,9 +1,6 @@
-<html>
-<head>
-    <title>Listado de Alquileres</title>
-</head>
-<body>
-<div class="container">
+<#import "base.ftl" as b>
+
+<@b.base>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -36,6 +33,4 @@
         </tbody>
 
     </table>
-</div>
-</body>
-</html>
+</@b.base>
