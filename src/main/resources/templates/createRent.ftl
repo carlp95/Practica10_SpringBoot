@@ -1,63 +1,47 @@
-<html>
-<head>
-    <title>Crear Alquiler</title>
-</head>
-<body>
-<div class="container">
-    <div class="row justify-content-around">
-    <#--<div class="col-lg-8">
-        <h2 class="card-text" style="color: white">Registrate en la red donde puedes compartir tus pensamientos</h2>
-    </div>
--->
-        <div class="col-lg-4 mb-4">
-            <div class="card border-success mb-3 mx-auto">
-                <div class="card-body">
-                <#--<h4 class="card-title" align="center" style="font-family: leaf,serif; font-size: 50px; color: #316a3a">BanaGreen</h4>-->
+<#import "base.ftl" as b>
 
-                    <form id="rentForm" action="/rent/create" method="POST" autocomplete="off">
+<@b.base>
+    <div class="mb-4">
+        <div class="card border-success mb-3 mx-auto">
+            <div class="card-header">
+                <h4 class="card-title" align="center">Alquiler</h4>
+            </div>
+            <div class="card-body">
+                <form id="rentForm" action="/rent/create" method="POST" autocomplete="off">
 
-                        <#--<div class="form-group">-->
-                            <#--<label for="device"> Dispositivo</label>-->
-                            <#--<input id="identification" class="form-control" name="identification" placeholder="031-0000000-1" maxlength="13" type="text">-->
-                        <#--</div>-->
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <label for="device"> Dispositivos</label>
-                                    <select class="form-control" id="device" name="device">
-                                        <#list devices as device>
-                                            <option value="${device.name}">${device.name}</option>
-                                        </#list>
-                                    </select>
-                                </div>
-                            </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="counter"> Cantidad</label>
-                                <input class="form-control" name="counter" min="0" type="number">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="custId"> Cédula Cliente</label>
-                                <input class="form-control" name="custId" placeholder="031-0000000-1" type="text">
-                            </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label for="custId"><@spring.message "content.rent.select.customer"></@spring.message></label>
+                            <select id="custId" class="custom-select" name="customerID" required>
+                                <#list customers as customer>
+                                    <option value="${customer.id}">${customer.id} ${customer.firstName}</option>
+                                </#list>
+                            </select>
                         </div>
-
-                        <div class="form-group row">
-                            <div class="form-group col-md-6">
-                                <label for="untilDate"> Alquiler Hasta</label>
-                                <input class="form-control" id="untilDate" name="untilDate" type="date">
-                            </div>
+                        <div class="form-group col-sm-6">
+                            <label for="untilDate"> Alquiler Hasta</label>
+                            <input class="form-control" id="untilDate" name="untilDate" type="date" required>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <button type="submit" class="btn btn-success mx-auto "><strong>Registrar</strong></button>
-                        </div>
+                    <label for="devices-select"></label>
+                    <select id="devices-select" multiple size="6" class="custom-select mb-4" name="devices" required>
+                        <#list devices as device>
+                            <#if device.unitsAvailable gt 0>
 
-                    </form>
-                </div>
+                                <option value="${device.id}" class="device-option" data-img="/img/${device.photoPath}">
+                                    ${device.name} <b>${device.color}</b> $${device.dailyCost}/Day
+                                </option>
+                            </#if>
+                        </#list>
+                    </select>
+
+                    <div class="form-group row">
+                        <button type="submit" class="btn btn-success mx-auto "><strong><@spring.message "content.rent.button.rent"></@spring.message></strong></button>
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
-</div>
-</body>
-</html>
+</@b.base>

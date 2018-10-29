@@ -25,7 +25,7 @@
     <!-- Sidebar Holder -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3><@spring.message "sidebar.title" /></h3>
+            <a href="/"><h3><@spring.message "sidebar.title" /></h3></a>
         </div>
 
         <ul class="list-unstyled components">
@@ -33,13 +33,47 @@
                 <a href="#"><@spring.message "sidebar.users" /></a>
             </li>
             <li>
-                <a href="/customer/"><@spring.message "sidebar.customers" /></a>
+                <a href="/customer/"></a>
+                <a href="#rentsSubmenu" data-toggle="collapse" class="dropdown-toggle">
+                    <i class="fas fa-users"></i>
+                    <@spring.message "sidebar.customers" />
+                </a>
+                <ul class="collapse list-unstyled" id="rentsSubmenu">
+                    <li>
+                        <a href="/customer/"><@spring.message "sidebar.submenu.list"></@spring.message></a>
+                    </li>
+                    <li>
+                        <a href="/customer/create"><@spring.message "sidebar.submenu.create"></@spring.message></a>
+                    </li>
+                </ul>
             </li>
             <li>
-                <a href="/rent/list"><@spring.message "sidebar.rents" /></a>
+                <a href="#customerSubmenu" data-toggle="collapse" class="dropdown-toggle">
+                    <i class="fas fa-building"></i>
+                    <@spring.message "sidebar.rents" />
+                </a>
+                <ul class="collapse list-unstyled" id="customerSubmenu">
+                    <li>
+                        <a href="/rent/"><@spring.message "sidebar.submenu.list"></@spring.message></a>
+                    </li>
+                    <li>
+                        <a href="/rent/create"><@spring.message "sidebar.submenu.create"></@spring.message></a>
+                    </li>
+                </ul>
             </li>
             <li>
-                <a href="/device/list"><@spring.message "sidebar.devices" /></a>
+                <a href="#devicesSubmenu" data-toggle="collapse" class="dropdown-toggle">
+                    <i class="fas fa-hdd"></i>
+                    <@spring.message "sidebar.devices" />
+                </a>
+                <ul class="collapse list-unstyled" id="devicesSubmenu">
+                    <li>
+                        <a href="/device/"><@spring.message "sidebar.submenu.list"></@spring.message></a>
+                    </li>
+                    <li>
+                        <a href="/device/create"><@spring.message "sidebar.submenu.create"></@spring.message></a>
+                    </li>
+                </ul>
             </li>
         </ul>
 
@@ -60,11 +94,9 @@
                     <i class="fas fa-align-justify"></i>
                 </button>
 
+                <#--Esta es la barra de control -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/rent/create">Alquilar</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Facturar</a>
                         </li>
@@ -85,6 +117,7 @@
 <script src="/webjars/popper.js/1.14.4/umd/popper.js"></script>
 <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script src="/webjars/chartjs/2.7.2/Chart.bundle.js"></script>
+<script src="/webjars/cleave.js/1.4.4/dist/cleave.js"></script>
 <#--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>-->
 
 <script type="text/javascript">

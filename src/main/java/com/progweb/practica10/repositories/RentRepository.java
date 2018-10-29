@@ -11,5 +11,6 @@ public interface RentRepository extends JpaRepository<Rent, Long> {
 
     Rent findRentById(long id);
     Rent findRentByCustomer(Customer customer);
+    List<Rent> findRentsByDeviceCategory(String category);
     List<Rent> findAllByOrderById();
 }

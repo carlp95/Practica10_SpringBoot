@@ -10,41 +10,41 @@
                     <form id="editCustomerForm" action="/customer/create" method="POST" autocomplete="off">
 
                         <div class="form-group">
-                            <label for="identification"><@spring.message "content.customer.formLabel.id"/></label>
-                            <input id="identification" class="form-control" name="identification" placeholder="031-0000000-1" maxlength="13" type="text">
+                            <label for="id"><@spring.message "content.customer.formLabel.id"/></label>
+                            <input id="id" class="form-control" name="identification" placeholder="031-0000000-1" maxlength="13" type="text" required>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="firstName"><@spring.message "content.customer.formLabel.firstName"/></label>
-                                <input class="form-control fullName" name="firstName" placeholder="Nombres" type="text">
+                                <input class="form-control fullName" name="firstName" placeholder="<@spring.message "content.customer.formLabel.firstName"/>" type="text" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="lastName"><@spring.message "content.customer.formLabel.lastName"/></label>
-                                <input class="form-control fullName" name="lastName" placeholder="Apellidos" type="text">
+                                <input class="form-control fullName" name="lastName" placeholder="<@spring.message "content.customer.formLabel.lastName"/>" type="text" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="form-group col-md-6">
                                 <label for="phone"><@spring.message "content.customer.formLabel.phone"/></label>
-                                <input class="form-control" id="phone" name="phone" maxlength="10" type="tel">
+                                <input class="form-control" id="phone" name="phone" maxlength="10" type="tel" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="cellPhone"><@spring.message "content.customer.formLabel.cellphone"/></label>
-                                <input class="form-control" id="cellPhone" name="cellPhone" maxlength="10" type="tel">
+                                <input class="form-control" id="cellPhone" name="cellPhone" maxlength="10" type="tel" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="address"><@spring.message "content.customer.formLabel.address"/></label>
-                            <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                            <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
                         </div>
 
                         <div class="form-group">
                             <div class="autocomplete">
                                 <label for="citylist"><@spring.message "content.customer.formLabel.city"/></label>
-                                <input class="form-control" id="citylist" name="city" type="text">
+                                <input class="form-control" id="citylist" name="city" type="text" required>
                             </div>
                         </div>
 
@@ -63,3 +63,11 @@
 </@b.base>
 
 <script type="text/javascript" src="/js/city.js"></script>
+<script>
+
+    var cleave = new Cleave('#id', {
+        delimiter: '-',
+        blocks: [3, 7, 1]
+    });
+
+</script>

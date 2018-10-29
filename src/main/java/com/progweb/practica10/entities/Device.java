@@ -1,8 +1,6 @@
 package com.progweb.practica10.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,13 +16,19 @@ public class Device {
     private String company;
     private int unitsAvailable;
     private float dailyCost;
-    private String category;
-    private String sub_Category;
+
+    private String photoPath;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Category category;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Category sub_Category;
 
     public Device() {
     }
 
-    public Device(String name, String color, Date issueDate, String company, int unitsAvailable, float dailyCost, String category, String sub_Category) {
+    public Device(String name, String color, Date issueDate, String company, int unitsAvailable, float dailyCost, Category category, Category sub_Category) {
         this.name = name;
         this.color = color;
         this.issueDate = issueDate;
@@ -91,19 +95,27 @@ public class Device {
         this.dailyCost = dailyCost;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
-    public String getSub_Category() {
+    public Category getSub_Category() {
         return sub_Category;
     }
 
-    public void setSub_Category(String sub_Category) {
+    public void setSub_Category(Category sub_Category) {
         this.sub_Category = sub_Category;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 }

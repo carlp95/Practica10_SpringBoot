@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 @RestController
 @RequestMapping("/images")
+@Deprecated
 public class ImageController {
 
     private final CustomerRepository customerRepository;

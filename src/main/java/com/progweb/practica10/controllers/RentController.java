@@ -31,58 +31,7 @@ public class RentController {
     @Autowired
     private DeviceRepository deviceRepository;
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public ModelAndView getCreateRent(Model model){
-
-        model.addAttribute("devices", deviceRepository.findAllByOrderById());
-
-        return new ModelAndView("createRent");
-    }
-
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String createRent(@RequestParam(value = "untilDate") String untilDate,
-                             @RequestParam(value = "custId") String custId, @RequestParam(value = "device") String deviceName,
-                             @RequestParam(value = "counter") int dcount){
-
-        try {
-            Customer customer = customerRepository.findCustomerById(custId);
-            Device device = deviceRepository.findDeviceByName(deviceName);
-
-            Rent rent = new Rent();
-            rent.setRentDate(new Date());
-
-            Date until = new SimpleDateFormat("yyyy-MM-dd").parse(untilDate);
-
-            rent.setUntilDate(until);
-
-            if(rent.getRentDate() == until){
-                rent.setPending(false);
-            }else{
-                rent.setPending(true);
-            }
-            rent.setCustomer(customer);
-            rent.setDeviceCount(dcount);
-            int available = device.getUnitsAvailable() - dcount;
-
-            if(available > 0){
-                device.setUnitsAvailable(available);
-                deviceRepository.save(device);
-                rent.setDevice(device);
-            }else {
-                /* TODO
-                 * Aquí va lo que va a pasar cuando no haya articulos para alquilar */
-                System.out.println("Hola");
-            }
-            rentRepository.save(rent);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return "redirect:/rent/list";
-    }
-
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getPendingRents(Model model){
         /*List<Device> devices = deviceRepository.findAllByOrderById();
         List<Device> deviceList = new ArrayList<>();
@@ -100,4 +49,53 @@ public class RentController {
 
         return new ModelAndView("rentList");
     }
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public ModelAndView getCreateRent(Model model){
+
+        model.addAttribute("customers", customerRepository.findAll());
+        model.addAttribute("devices", deviceRepository.findAllByOrderById());
+
+        return new ModelAndView("createRent");
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String createRent(@RequestParam(value = "customerID") String customerID,
+                             @RequestParam(value = "untilDate") String untilDate,
+                             @RequestParam(value = "devices") List<Long> devicesIDs) {
+
+        try {
+            Customer customer = customerRepository.findCustomerById(customerID);
+
+            Rent rent = new Rent();
+
+            rent.setCustomer(customer);
+
+            rent.setRentDate(new Date());
+
+            Date until = new SimpleDateFormat("yyyy-MM-dd").parse(untilDate);
+            rent.setUntilDate(until);
+
+            rent.setPending(true);
+
+            List<Device> devices = new ArrayList<>();
+            for (Long deviceID : devicesIDs) {
+                Device dev = deviceRepository.findDeviceById(deviceID);
+                dev.setUnitsAvailable(dev.getUnitsAvailable() - 1);
+                deviceRepository.save(dev);
+
+                devices.add(dev);
+            }
+            rent.setDevices(devices);
+
+            rentRepository.save(rent);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/rent/";
+    }
+
+
 }

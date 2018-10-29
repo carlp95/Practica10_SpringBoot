@@ -1,5 +1,6 @@
 package com.progweb.practica10.controllers;
 
+import com.progweb.practica10.entities.Category;
 import com.progweb.practica10.entities.Device;
 import com.progweb.practica10.repositories.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ public class DeviceController {
         this.deviceRepository = deviceRepository;
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView getAllDevices(Model model){
+        model.addAttribute("deviceList", deviceRepository.findAllByOrderById());
+        return new ModelAndView("devicesList");
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView getCreateDevice(){
         return new ModelAndView("createDevice");
@@ -33,7 +40,7 @@ public class DeviceController {
     public String createDevice(@RequestParam(value = "deviceName") String name, @RequestParam(value = "color") String color,
                                @RequestParam(value = "issueDate") Date issueDate, @RequestParam(value = "company") String company,
                                @RequestParam(value = "unitsAvailabe") int unitsAvailable, @RequestParam(value = "dailyCost") float dailyCost,
-                               @RequestParam(value = "category") String category, @RequestParam(value = "sub_Category") String sub_category){
+                               @RequestParam(value = "category") Category category, @RequestParam(value = "sub_Category") Category sub_category){
         Device device = new Device();
 
         device.setName(name);
@@ -44,8 +51,10 @@ public class DeviceController {
         device.setDailyCost(dailyCost);
         device.setCategory(category);
         device.setSub_Category(sub_category);
+        device.setPhotoPath("");
+
         deviceRepository.save(device);
-        return "redirect:/devices";
+        return "redirect:/device";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -59,7 +68,7 @@ public class DeviceController {
     public String editDevice(@RequestParam(value = "identification") long id, @RequestParam(value = "deviceName") String name, @RequestParam(value = "color") String color,
                              @RequestParam(value = "issueDate") Date issueDate, @RequestParam(value = "company") String company,
                              @RequestParam(value = "unitsAvailabe") int unitsAvailable, @RequestParam(value = "dailyCost") float dailyCost,
-                             @RequestParam(value = "category") String category, @RequestParam(value = "sub_Category") String sub_category){
+                             @RequestParam(value = "category") Category category, @RequestParam(value = "sub_Category") Category sub_category){
 
         Device device = deviceRepository.findDeviceById(id);
         device.setName(name);
@@ -72,12 +81,8 @@ public class DeviceController {
         device.setSub_Category(sub_category);
         deviceRepository.save(device);
 
-        return "redirect:/devices";
+        return "redirect:/device";
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView getAllDevices(Model model){
-        model.addAttribute("deviceList", deviceRepository.findAllByOrderById());
-        return new ModelAndView("devices");
-    }
+
 }

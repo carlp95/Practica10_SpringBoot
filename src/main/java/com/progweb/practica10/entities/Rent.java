@@ -3,6 +3,7 @@ package com.progweb.practica10.entities;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Entity
 public class Rent {
@@ -14,7 +15,9 @@ public class Rent {
     private Date rentDate;
     private Date untilDate;
     private boolean pending;
-    private int deviceCount;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Device> devices;
 
     @OneToOne
     private Customer customer;
@@ -25,11 +28,11 @@ public class Rent {
     public Rent() {
     }
 
-    public Rent(Date rentDate, Date untilDate, boolean pending, int deviceCount, Customer customer, Device device) {
+    public Rent(Date rentDate, Date untilDate, boolean pending, List<Device> devices, Customer customer, Device device) {
         this.rentDate = rentDate;
         this.untilDate = untilDate;
         this.pending = pending;
-        this.deviceCount = deviceCount;
+        this.devices = devices;
         this.customer = customer;
         this.device = device;
     }
@@ -66,12 +69,12 @@ public class Rent {
         this.pending = pending;
     }
 
-    public int getDeviceCount() {
-        return deviceCount;
+    public List<Device> getDevices() {
+        return devices;
     }
 
-    public void setDeviceCount(int deviceCount) {
-        this.deviceCount = deviceCount;
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
     }
 
     public Customer getCustomer() {
@@ -88,5 +91,16 @@ public class Rent {
 
     public void setDevice(Device device) {
         this.device = device;
+    }
+
+    public long daysRented() {
+        long duration =  new Date().getTime() - this.getRentDate().getTime();
+        return TimeUnit.DAYS.convert(duration, TimeUnit.MILLISECONDS);
+    }
+
+    public long getAverage() {
+//TODO - terminar este metooo
+    return 1L;
+
     }
 }
