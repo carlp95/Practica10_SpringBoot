@@ -9,6 +9,7 @@ import com.progweb.practica10.repositories.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,9 +41,9 @@ public class RentController {
         List<Rent> rentsAux = new ArrayList<>();
 
         for (Rent rent : rents) {
-            if(rent.isPending()){
+//            if(rent.isPending()){
                 rentsAux.add(rent);
-            }
+//            }
         }
 
         model.addAttribute("rents", rentsAux);
@@ -55,12 +56,14 @@ public class RentController {
 
         model.addAttribute("customers", customerRepository.findAll());
         model.addAttribute("devices", deviceRepository.findAllByOrderById());
+        model.addAttribute("todayDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()    ));
 
         return new ModelAndView("createRent");
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createRent(@RequestParam(value = "customerID") String customerID,
+                             @RequestParam(value = "date") String date,
                              @RequestParam(value = "untilDate") String untilDate,
                              @RequestParam(value = "devices") List<Long> devicesIDs) {
 
@@ -71,7 +74,8 @@ public class RentController {
 
             rent.setCustomer(customer);
 
-            rent.setRentDate(new Date());
+            Date rentDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+            rent.setRentDate(rentDate);
 
             Date until = new SimpleDateFormat("yyyy-MM-dd").parse(untilDate);
             rent.setUntilDate(until);
@@ -97,5 +101,21 @@ public class RentController {
         return "redirect:/rent/";
     }
 
+    @RequestMapping(value = "/show/{id}")
+    public ModelAndView getRentDetails(@PathVariable Long id, Model model) {
+        Rent rent = rentRepository.findRentById(id);
 
+        model.addAttribute("rent", rent);
+
+        return new ModelAndView("rentDetails");
+    }
+
+    @RequestMapping(value = "/return/{id}", method = RequestMethod.POST)
+    public String returnDevices(@PathVariable Long id) {
+        Rent rent = rentRepository.findRentById(id);
+        rent.setPending(false);
+        rentRepository.save(rent);
+
+        return "redirect:/rent/";
+    }
 }

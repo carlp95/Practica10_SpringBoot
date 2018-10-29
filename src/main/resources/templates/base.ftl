@@ -82,31 +82,31 @@
     <!-- Page Content Holder -->
     <div id="content">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+        <#--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+            <#--<div class="container-fluid">-->
 
-                <button type="button" id="sidebarCollapse" class="navbar-btn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-align-justify"></i>
-                </button>
+                <#--<button type="button" id="sidebarCollapse" class="navbar-btn">-->
+                    <#--<span></span>-->
+                    <#--<span></span>-->
+                    <#--<span></span>-->
+                <#--</button>-->
+                <#--<button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+                    <#--<i class="fas fa-align-justify"></i>-->
+                <#--</button>-->
 
-                <#--Esta es la barra de control -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Facturar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/rent/list">Alquilados</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                <#--&lt;#&ndash;&lt;#&ndash;Esta es la barra de control &ndash;&gt;&ndash;&gt;-->
+                <#--&lt;#&ndash;<div class="collapse navbar-collapse" id="navbarSupportedContent">&ndash;&gt;-->
+                    <#--&lt;#&ndash;<ul class="nav navbar-nav ml-auto">&ndash;&gt;-->
+                        <#--&lt;#&ndash;<li class="nav-item">&ndash;&gt;-->
+                            <#--&lt;#&ndash;<a class="nav-link" href="#">Facturar</a>&ndash;&gt;-->
+                        <#--&lt;#&ndash;</li>&ndash;&gt;-->
+                        <#--&lt;#&ndash;<li class="nav-item">&ndash;&gt;-->
+                            <#--&lt;#&ndash;<a class="nav-link" href="/rent/list">Alquilados</a>&ndash;&gt;-->
+                        <#--&lt;#&ndash;</li>&ndash;&gt;-->
+                    <#--&lt;#&ndash;</ul>&ndash;&gt;-->
+                <#--&lt;#&ndash;</div>&ndash;&gt;-->
+            <#--</div>-->
+        <#--</nav>-->
 
         <#nested >
 

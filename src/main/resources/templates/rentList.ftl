@@ -8,6 +8,7 @@
             <th>Fecha entrega</th>
             <th>Estado</th>
             <th>Cliente</th>
+            <th>Detalles</th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +22,11 @@
                     <td>Regresado/Pagado</td>
                 </#if>
                 <td><a href="/customer/show/${rent.customer.id}">${rent.customer.firstName} ${rent.customer.lastName}</a></td>
+                <#if rent.pending>
+                    <td><a href="/rent/show/${rent.id}" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a></td>
+                <#else>
+                    <td><a href="#" class="btn btn-outline-primary disabled"><i class="fa fa-eye"></i></a></td>
+                </#if>
             </tr>
             </#list>
         </tbody>

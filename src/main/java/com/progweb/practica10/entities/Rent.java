@@ -22,19 +22,15 @@ public class Rent {
     @OneToOne
     private Customer customer;
 
-    @OneToOne
-    private Device device;
-
     public Rent() {
     }
 
-    public Rent(Date rentDate, Date untilDate, boolean pending, List<Device> devices, Customer customer, Device device) {
+    public Rent(Date rentDate, Date untilDate, boolean pending, List<Device> devices, Customer customer) {
         this.rentDate = rentDate;
         this.untilDate = untilDate;
         this.pending = pending;
         this.devices = devices;
         this.customer = customer;
-        this.device = device;
     }
 
     public Long getId() {
@@ -85,17 +81,25 @@ public class Rent {
         this.customer = customer;
     }
 
-    public Device getDevice() {
-        return device;
+    public long getDaysRented() {
+        Date now = new Date();
+        long diff;
+        // La primera condicion verifica sí se esta regresando el equipo despues de la fecha acordada
+        if (this.getUntilDate().getTime() < now.getTime()) {
+            //Aqui se podria activar un flag para cobrarles recargo :p
+            diff = new Date().getTime() - this.getRentDate().getTime();
+        } else {
+            diff = this.getUntilDate().getTime() - this.getRentDate().getTime();
+        }
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
-    public void setDevice(Device device) {
-        this.device = device;
-    }
-
-    public long daysRented() {
-        long duration =  new Date().getTime() - this.getRentDate().getTime();
-        return TimeUnit.DAYS.convert(duration, TimeUnit.MILLISECONDS);
+    public float getTotal() {
+        float totalByDay = 0;
+        for (int i = 0; i < this.getDevices().size(); i++) {
+            totalByDay += this.getDevices().get(i).getDailyCost();
+        }
+        return totalByDay * this.getDaysRented();
     }
 
     public long getAverage() {

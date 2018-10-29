@@ -15,3 +15,5 @@ insert into device(id,name,color,issue_Date,company,units_Available,daily_Cost,c
 insert into device(id,name,color,issue_Date,company,units_Available,daily_Cost,category_id,sub_Category_id,photo_path) values (5,'Lavadora','Blanca','2018-02-12','Whirpool',60,200, 3, 7, '');
 
 insert into CUSTOMER values ('402-2472509-9', 'Mi casa', '8099342324', 'Salcedo', 'John', 'Doe', '8099091234', 'default.png');
+
+-- INSERT INTO RENT (ID, PENDING, RENT_DATE, UNTIL_DATE, CUSTOMER_ID) VALUES (0, true, '2018-10-29', '2018-10-10', '402-2472509-9');
