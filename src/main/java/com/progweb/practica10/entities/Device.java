@@ -13,6 +13,7 @@ public class Device {
     private String name;
     private String color;
     private Date issueDate;
+    private boolean pending;
     private String company;
     private int unitsAvailable;
     private float dailyCost;
@@ -117,5 +118,13 @@ public class Device {
 
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
+    }
+
+    public boolean isPending() {
+        return pending;
+    }
+
+    public void setPending(boolean pending) {
+        this.pending = pending;
     }
 }

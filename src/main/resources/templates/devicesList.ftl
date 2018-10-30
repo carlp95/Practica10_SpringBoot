@@ -23,8 +23,8 @@
                 <td>${device.company}</td>
                 <td>${device.unitsAvailable}</td>
                 <td>${device.dailyCost}</td>
-                <td>${device.category}</td>
-                <td>${device.sub_Category}</td>
+                <td>${device.category.name}</td>
+                <td>${device.sub_Category.name}</td>
             </tr>
             </#list>
         </tbody>

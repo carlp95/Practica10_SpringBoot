@@ -41,9 +41,9 @@ public class RentController {
         List<Rent> rentsAux = new ArrayList<>();
 
         for (Rent rent : rents) {
-//            if(rent.isPending()){
+            if(rent.isPending()){
                 rentsAux.add(rent);
-//            }
+            }
         }
 
         model.addAttribute("rents", rentsAux);

@@ -3,6 +3,7 @@ package com.progweb.practica10.controllers;
 import com.progweb.practica10.entities.Customer;
 import com.progweb.practica10.repositories.CustomerRepository;
 
+import com.progweb.practica10.repositories.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private RentRepository rentRepository;
 
     private static String UPLOAD_FOLDER = new File("src/main/resources/static/img").getAbsolutePath();
 
@@ -94,7 +98,9 @@ public class CustomerController {
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
     public ModelAndView listCustomer(@PathVariable String id, Model model) {
 
-        model.addAttribute("customer", customerRepository.findCustomerById(id));
+        Customer customer = customerRepository.findCustomerById(id);
+        model.addAttribute("customer", customer);
+        model.addAttribute("rents", rentRepository.findAllByCustomer(customer));
 
         return new ModelAndView("customerDetails");
     }
