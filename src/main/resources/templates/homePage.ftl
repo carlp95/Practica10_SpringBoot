@@ -7,7 +7,7 @@
             <div class="card-header"><div class="card-title"><@spring.message "content.records.title"/></div></div>
 
             <div class="card-body p-0">
-                <table class="table table-hover">
+                <table class="table table-hover table-sm table-bordered">
                     <thead>
                         <tr>
                             <th><@spring.message "content.records.rent.id"/></th>

@@ -16,10 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.*;
 
 @Controller
 @RequestMapping("/customer")
@@ -101,6 +102,17 @@ public class CustomerController {
         Customer customer = customerRepository.findCustomerById(id);
         model.addAttribute("customer", customer);
         model.addAttribute("rents", rentRepository.findAllByCustomer(customer));
+
+        List<Object[]> result = rentRepository.findAverageDaysRentedByCategory();
+        List<String> categories = new ArrayList<>();
+        List<Long> averages = new ArrayList<>();
+
+        for (Object[] row : result) {
+            categories.add((String) row[0]);
+            averages.add(((BigInteger) row[1]).longValue());
+        }
+        model.addAttribute("rents_categories", categories);
+        model.addAttribute("rents_average_days", averages);
 
         return new ModelAndView("customerDetails");
     }

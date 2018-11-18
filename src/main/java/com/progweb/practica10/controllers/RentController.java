@@ -111,9 +111,21 @@ public class RentController {
     }
 
     @RequestMapping(value = "/return/{id}", method = RequestMethod.POST)
-    public String returnDevices(@PathVariable Long id) {
+    public String returnDevices(@PathVariable Long id,
+                                @RequestParam(value = "devices") List<Long> devicesToRemoveIDs) {
         Rent rent = rentRepository.findRentById(id);
-        rent.setPending(false);
+
+//        Remover los dispositivos
+        for (Long deviceID :
+                devicesToRemoveIDs) {
+            Device device = deviceRepository.findDeviceById(deviceID);
+            rent.getDevices().remove(device);
+        }
+
+        if (rent.getDevices().isEmpty()) {
+            rent.setPending(false);
+        }
+
         rentRepository.save(rent);
 
         return "redirect:/rent/";

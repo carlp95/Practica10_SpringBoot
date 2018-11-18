@@ -2,6 +2,7 @@ package com.progweb.practica10.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Device {
@@ -13,7 +14,7 @@ public class Device {
     private String name;
     private String color;
     private Date issueDate;
-    private boolean pending;
+    private boolean pending = false;
     private String company;
     private int unitsAvailable;
     private float dailyCost;
@@ -126,5 +127,18 @@ public class Device {
 
     public void setPending(boolean pending) {
         this.pending = pending;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Device device = (Device) o;
+        return Objects.equals(id, device.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

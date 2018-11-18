@@ -1,7 +1,7 @@
 <#import "base.ftl" as b>
 
 <@b.base>
-    <table class="table table-hover">
+    <table class="table table-hover table-sm table-bordered">
         <thead>
         <tr>
             <th>Cédula</th>
