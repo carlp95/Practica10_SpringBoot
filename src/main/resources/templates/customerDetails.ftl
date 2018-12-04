@@ -9,11 +9,11 @@
             <div class="row">
                 <div class="col mb-3">
                     <img class="profile-pic mb-3" src="/img/${customer.photoPath}" alt="Customer profile">
-                    <p class="card-text"><strong><@spring.message "content.customer.show.id"/></strong>: ${customer.id}</p>
+                    <p class="card-text"><strong><@spring.message "content.username"/></strong>: ${customer.id}</p>
                     <p class="card-text">
-                        <strong><@spring.message "content.customer.show.firstName"/></strong>: ${customer.firstName}</p>
+                        <strong><@spring.message "content.firstName"/></strong>: ${customer.firstName}</p>
                     <p class="card-text">
-                        <strong><@spring.message "content.customer.show.lastName"/></strong>: ${customer.lastName}</p>
+                        <strong><@spring.message "content.lastName"/></strong>: ${customer.lastName}</p>
                     <p class="card-text">
                         <strong><@spring.message "content.customer.show.phone"/></strong>: ${customer.phone}</p>
                 </div>
@@ -100,7 +100,7 @@
         data: {
             labels: categories,
             datasets: [{
-                label: '# of Votes',
+                label: '# Average rented days',
                 data: averages,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

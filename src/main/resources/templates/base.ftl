@@ -29,16 +29,28 @@
         </div>
 
         <ul class="list-unstyled components">
+            <#if user>
             <li>
-                <a href="#"><@spring.message "sidebar.users" /></a>
+                <a href="#usersSubmenu" data-toggle="collapse" class="dropdown-toggle">
+                    <i class="fas fa-user"></i>
+                    <@spring.message "sidebar.users" />
+                </a>
+                <ul class="collapse list-unstyled" id="usersSubmenu">
+                    <li>
+                        <a href="/admin/users"><@spring.message "sidebar.submenu.list"></@spring.message></a>
+                    </li>
+                    <li>
+                        <a href="/admin/create"><@spring.message "sidebar.submenu.create"></@spring.message></a>
+                    </li>
+                </ul>
             </li>
+            </#if>
             <li>
-                <a href="/customer/"></a>
-                <a href="#rentsSubmenu" data-toggle="collapse" class="dropdown-toggle">
+                <a href="#customersSubmenu" data-toggle="collapse" class="dropdown-toggle">
                     <i class="fas fa-users"></i>
                     <@spring.message "sidebar.customers" />
                 </a>
-                <ul class="collapse list-unstyled" id="rentsSubmenu">
+                <ul class="collapse list-unstyled" id="customersSubmenu">
                     <li>
                         <a href="/customer/"><@spring.message "sidebar.submenu.list"></@spring.message></a>
                     </li>
@@ -48,11 +60,11 @@
                 </ul>
             </li>
             <li>
-                <a href="#customerSubmenu" data-toggle="collapse" class="dropdown-toggle">
+                <a href="#rentsSubmenu" data-toggle="collapse" class="dropdown-toggle">
                     <i class="fas fa-building"></i>
                     <@spring.message "sidebar.rents" />
                 </a>
-                <ul class="collapse list-unstyled" id="customerSubmenu">
+                <ul class="collapse list-unstyled" id="rentsSubmenu">
                     <li>
                         <a href="/rent/"><@spring.message "sidebar.submenu.list"></@spring.message></a>
                     </li>
@@ -120,14 +132,14 @@
 <script src="/webjars/cleave.js/1.4.4/dist/cleave.js"></script>
 <#--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>-->
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-            $(this).toggleClass('active');
-        });
-    });
-</script>
+<#--<script type="text/javascript">-->
+    <#--$(document).ready(function () {-->
+        <#--$('#sidebarCollapse').on('click', function () {-->
+            <#--$('#sidebar').toggleClass('active');-->
+            <#--$(this).toggleClass('active');-->
+        <#--});-->
+    <#--});-->
+<#--</script>-->
 
 </body>
 

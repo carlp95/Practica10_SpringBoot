@@ -13,14 +13,15 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView getLoginPage(){
+
         return new ModelAndView("login");
     }
 
-    /*@RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String confirmLogin(@RequestParam(value = "username") String username,
                                @RequestParam(value = "password") String password){
         System.out.println(username);
         System.out.println(password);
         return "redirect:/admin/";
-    }*/
+    }
 }
