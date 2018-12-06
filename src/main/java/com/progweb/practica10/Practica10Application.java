@@ -1,14 +1,18 @@
 package com.progweb.practica10;
 
-import com.progweb.practica10.services.SecurityServices;
+import com.progweb.practica10.entities.Role;
+import com.progweb.practica10.entities.User;
+import com.progweb.practica10.services.UserService;
 import org.h2.tools.Server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
-@SpringBootApplication
+@SpringBootApplication()
 public class Practica10Application {
     public static void main(String[] args) {
         try {
@@ -20,8 +24,18 @@ public class Practica10Application {
         }
         ApplicationContext applicationContext = SpringApplication.run(Practica10Application.class, args);
 
-        SecurityServices securityServices = (SecurityServices) applicationContext.getBean("securityServices");
-        securityServices.CreateAdmin();
+        /*String[] lista = applicationContext.getBeanDefinitionNames();
+        System.out.println("====== Beans Registrados =====");
+        for(String bean : lista){
+            System.out.println(""+bean);
+        }
+        System.out.println("====== FIN Beans Registrados =====");*/
+
+        UserService userService = (UserService) applicationContext.getBean("userService");
+        Set<Role> roles = new HashSet<>();
+        roles.add(new Role("ADMIN"));
+        userService.CreateAdmin(new User("admin","admin123",true,"Juanito","Rodríguez",roles));
+
 
     }
 }

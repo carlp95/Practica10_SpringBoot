@@ -1,10 +1,11 @@
 package com.progweb.practica10.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-public class User {
+public class User implements Serializable {
 
     @Id
     private String username;
@@ -17,13 +18,12 @@ public class User {
     private Set<Role> roles;
 
     public User() {
-        this.active = true;
     }
 
-    public User(String username, String password, String firstName, String lastName, Set<Role> roles) {
+    public User(String username, String password, boolean active, String firstName, String lastName, Set<Role> roles) {
         this.username = username;
         this.password = password;
-        this.active = true;
+        this.active = active;
         this.firstName = firstName;
         this.lastName = lastName;
         this.roles = roles;

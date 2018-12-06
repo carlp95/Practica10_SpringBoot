@@ -12,9 +12,9 @@ import java.util.Optional;
 public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView getLoginPage(){
+    public ModelAndView getLoginPage(@RequestParam Optional<String> error){
 
-        return new ModelAndView("login");
+        return new ModelAndView("login", "error",error);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)

@@ -29,22 +29,40 @@
         </div>
 
         <ul class="list-unstyled components">
-            <#if user>
-            <li>
-                <a href="#usersSubmenu" data-toggle="collapse" class="dropdown-toggle">
-                    <i class="fas fa-user"></i>
+            <#list user_roles as roles>
+                <#if roles.role == "ADMIN">
+                    <li>
+                        <a href="#usersSubmenu" data-toggle="collapse" class="dropdown-toggle">
+                            <i class="fas fa-user"></i>
                     <@spring.message "sidebar.users" />
-                </a>
-                <ul class="collapse list-unstyled" id="usersSubmenu">
-                    <li>
-                        <a href="/admin/users"><@spring.message "sidebar.submenu.list"></@spring.message></a>
+                        </a>
+                        <ul class="collapse list-unstyled" id="usersSubmenu">
+                            <li>
+                                <a href="/admin/users"><@spring.message "sidebar.submenu.list"></@spring.message></a>
+                            </li>
+                            <li>
+                                <a href="/admin/create"><@spring.message "sidebar.submenu.create"></@spring.message></a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="/admin/create"><@spring.message "sidebar.submenu.create"></@spring.message></a>
-                    </li>
-                </ul>
-            </li>
-            </#if>
+                </#if>
+            </#list>
+            <#--<#if >-->
+            <#--<li>-->
+                <#--<a href="#usersSubmenu" data-toggle="collapse" class="dropdown-toggle">-->
+                    <#--<i class="fas fa-user"></i>-->
+                    <#--<@spring.message "sidebar.users" />-->
+                <#--</a>-->
+                <#--<ul class="collapse list-unstyled" id="usersSubmenu">-->
+                    <#--<li>-->
+                        <#--<a href="/admin/users"><@spring.message "sidebar.submenu.list"></@spring.message></a>-->
+                    <#--</li>-->
+                    <#--<li>-->
+                        <#--<a href="/admin/create"><@spring.message "sidebar.submenu.create"></@spring.message></a>-->
+                    <#--</li>-->
+                <#--</ul>-->
+            <#--</li>-->
+            <#--</#if>-->
             <li>
                 <a href="#customersSubmenu" data-toggle="collapse" class="dropdown-toggle">
                     <i class="fas fa-users"></i>

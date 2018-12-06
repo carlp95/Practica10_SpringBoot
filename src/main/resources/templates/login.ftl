@@ -10,22 +10,21 @@
     <link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-    <#if _csrf??> <#--validando que no sea nula, si lo es, está deshabilitado el csrf -->
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    </#if>
-
     <div class="card border-success mb-3 mx-auto">
         <div class="card-body">
             <h4 class="card-title" align="center" style="font-family: leaf,serif; font-size: 50px; color: #316a3a">BanaGreen Software</h4>
-            <form action="/login" method="post">
+            <form role="form" action="/login" method="post">
+                <#if _csrf??> <#--validando que no sea nula, si lo es, está deshabilitado el csrf -->
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </#if>
                 <div class="form-group row">
                     <div class="col-md-12" style="margin: 0 auto;">
-                        <input class="form-control" name="username" placeholder="Usuario" type="text" required autofocus>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" required autofocus>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12" style="margin: 0 auto;">
-                        <input  class="form-control" name="password" placeholder="Contraseña" type="password">
+                        <input  type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -35,13 +34,16 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <button type="submit" class="btn btn-success mx-auto"><i class="fa fa-sign-in-alt"> <strong>Entrar</strong></i></button>
+                    <button type="submit" class="btn btn-success mx-auto" value="Sign In"><i class="fa fa-sign-in-alt"> <strong>Entrar</strong></i></button>
                 </div>
 
             <#--<#if loginRedirect?has_content>
                 <input type="hidden" name="loginRedirect" value="${ loginRedirect }">
             </#if>-->
             </form>
+            <#if error.isPresent()>
+                <p>usuario no existe....</p>
+            </#if>
         </div>
     </div>
 

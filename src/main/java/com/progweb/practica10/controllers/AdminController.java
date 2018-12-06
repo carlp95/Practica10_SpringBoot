@@ -60,7 +60,7 @@ public class AdminController {
             user.setActive(false);
         }
 
-        Role role1 = roleRepository.findByRoleName(role);
+        Role role1 = roleRepository.findByRole(role);
         if(role1 != null){
             user.setRoles(new HashSet<>(Arrays.asList(role1)));
         }else {
