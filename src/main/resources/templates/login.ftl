@@ -8,11 +8,20 @@
     <title>Práctica 10</title>
 
     <link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/webjars/font-awesome/5.3.1/css/all.min.css">
 </head>
 <body>
     <div class="row justify-content-around">
         <div class="col-lg-4 mb-4">
+            <#if error.isPresent()>
+            <#--<p>usuario no existe....</p>-->
+                <div class="alert alert-dismissible alert-danger">
+                    <#--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
+                <#--<strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.-->
+                    El usuario o contraseña no es correcto
+                </div>
+            </#if>
             <div class="card border-success mb-3 mx-auto">
                 <div class="card-body">
                     <h4 class="card-title" align="center" style="font-family: leaf,serif; font-size: 50px; color: #316a3a">BanaGreen Software</h4>
@@ -44,9 +53,6 @@
                         <input type="hidden" name="loginRedirect" value="${ loginRedirect }">
                     </#if>-->
                     </form>
-            <#if error.isPresent()>
-                <p>usuario no existe....</p>
-            </#if>
                 </div>
             </div>
         </div>
