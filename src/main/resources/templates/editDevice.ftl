@@ -1,14 +1,10 @@
-<html>
+<#import "base.ftl" as b>
+
 <head>
     <title>Crear Dispositivo</title>
 </head>
-<body>
-<div class="container">
+<@b.base>
     <div class="row justify-content-around">
-    <#--<div class="col-lg-8">
-        <h2 class="card-text" style="color: white">Registrate en la red donde puedes compartir tus pensamientos</h2>
-    </div>
--->
         <div class="col-lg-4 mb-4">
             <div class="card border-success mb-3 mx-auto">
                 <div class="card-body">
@@ -80,10 +76,10 @@
                                 <select class="form-control" id="sub_Categoria" name="sub_Categoria">
                                     <#if device.sub_Category == "Portátil">
                                         <option value="Portátil" selected="selected">Portátil</option>
-                                        <#--<option value="Hogar">Huawei</option>-->
-                                        <#--<option value="Celulares">Celulares</option>-->
-                                        <#--<option value="Ferretería">Ferretería</option>-->
-                                        <#--<option value="Gadgets">Gadgets</option>-->
+                                    <#--<option value="Hogar">Huawei</option>-->
+                                    <#--<option value="Celulares">Celulares</option>-->
+                                    <#--<option value="Ferretería">Ferretería</option>-->
+                                    <#--<option value="Gadgets">Gadgets</option>-->
                                     <#elseif device.sub_Category == "Celulares">
                                         <option value="PC y Portátiles">PC Y Portátiles</option>
                                         <option value="Hogar" selected="selected">Hogar</option>
@@ -114,7 +110,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <button type="submit" class="btn btn-success mx-auto "><strong>Crear</strong></button>
+                            <button type="submit" class="btn btn-success mx-auto "><i class="fas fa-check-circle"></i> <strong>Crear</strong></button>
                         </div>
 
                     </form>
@@ -122,6 +118,14 @@
             </div>
         </div>
     </div>
+</@b.base>
+
+<#--
+<html>
+
+<body>
+<div class="container">
+
 </div>
 </body>
-</html>
+</html>-->

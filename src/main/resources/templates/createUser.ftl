@@ -1,18 +1,19 @@
-<html>
+<#import "base.ftl" as b>
+
 <head>
     <title>Create New User</title>
 </head>
-<body>
-<div class="container">
+
+<@b.base>
     <div class="row justify-content-around">
-        <#--<div class="col-lg-8">
-            <h2 class="card-text" style="color: white">Registrate en la red donde puedes compartir tus pensamientos</h2>
-        </div>
+    <#--<div class="col-lg-8">
+        <h2 class="card-text" style="color: white">Registrate en la red donde puedes compartir tus pensamientos</h2>
+    </div>
 -->
         <div class="col-lg-4 mb-4">
             <div class="card border-success mb-3 mx-auto">
                 <div class="card-body">
-                    <#--<h4 class="card-title" align="center" style="font-family: leaf,serif; font-size: 50px; color: #316a3a">BanaGreen</h4>-->
+                <#--<h4 class="card-title" align="center" style="font-family: leaf,serif; font-size: 50px; color: #316a3a">BanaGreen</h4>-->
 
                     <form id="createUserForm" action="/admin/create" method="POST" autocomplete="off">
 
@@ -64,6 +65,4 @@
             </div>
         </div>
     </div>
-</div>
-</body>
-</html>
+</@b.base>

@@ -10,6 +10,7 @@
     <title>Pr&aacute;ctica 10 Login</title>
 
     <link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/font-awesome/5.3.1/css/all.min.css">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/ourStyle.css" class="css">

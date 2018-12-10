@@ -63,7 +63,7 @@
 
                     <div class="form-group row">
                         <button type="submit" class="btn btn-success mx-auto ">
-                            <strong><@spring.message "content.customer.editButton.save"/></strong>
+                            <i class="fas fa-save"></i> <strong><@spring.message "content.customer.editButton.save"/></strong>
                         </button>
                     </div>
 

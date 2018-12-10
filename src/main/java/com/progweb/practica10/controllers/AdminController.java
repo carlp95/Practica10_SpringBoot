@@ -4,8 +4,10 @@ import com.progweb.practica10.entities.Role;
 import com.progweb.practica10.entities.User;
 import com.progweb.practica10.repositories.RoleRepository;
 import com.progweb.practica10.repositories.UserRepository;
+import com.progweb.practica10.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,21 +29,27 @@ public class AdminController {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private UserService userService;
+
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    @Secured({"ROLE_ADMIN"})
+//    @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession httpSession){
         return "index";
     }
 
-    @Secured({"ROLE_ADMIN"})
+//    @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public ModelAndView getSaveNewUser(){
+    public ModelAndView getSaveNewUser(Model model, Authentication authentication){
+
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
+
         return new ModelAndView("createUser");
     }
 
-    @Secured({"ROLE_ADMIN"})
+//    @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String saveNewUser(@RequestParam(value = "username") String username,
                               @RequestParam(value = "firstName") String firstName,
@@ -71,11 +79,12 @@ public class AdminController {
         return "redirect:/userList";
     }
 
-    @Secured({"ROLE_ADMIN"})
+//    @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ModelAndView getUserList(Model model){
+    public ModelAndView getUserList(Model model, Authentication authentication){
 
         model.addAttribute("userList", userRepository.findAll());
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
 
         return new ModelAndView("userList");
     }

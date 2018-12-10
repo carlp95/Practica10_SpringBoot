@@ -6,7 +6,9 @@ import com.progweb.practica10.entities.Rent;
 import com.progweb.practica10.repositories.CustomerRepository;
 import com.progweb.practica10.repositories.DeviceRepository;
 import com.progweb.practica10.repositories.RentRepository;
+import com.progweb.practica10.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,11 +34,17 @@ public class RentController {
     @Autowired
     private DeviceRepository deviceRepository;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView getPendingRents(Model model){
+    public ModelAndView getPendingRents(Model model, Authentication authentication){
         /*List<Device> devices = deviceRepository.findAllByOrderById();
         List<Device> deviceList = new ArrayList<>();
         */
+        model.addAttribute("userlogged", userService.findByUsername( authentication.getName()));
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
+
         List<Rent> rents = rentRepository.findAllByOrderById();
         List<Rent> rentsAux = new ArrayList<>();
 
@@ -52,7 +60,10 @@ public class RentController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public ModelAndView getCreateRent(Model model){
+    public ModelAndView getCreateRent(Model model, Authentication authentication){
+
+        model.addAttribute("userlogged", userService.findByUsername( authentication.getName()));
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
 
         model.addAttribute("customers", customerRepository.findAll());
         model.addAttribute("devices", deviceRepository.findAllByOrderById());
@@ -102,7 +113,11 @@ public class RentController {
     }
 
     @RequestMapping(value = "/show/{id}")
-    public ModelAndView getRentDetails(@PathVariable Long id, Model model) {
+    public ModelAndView getRentDetails(@PathVariable Long id, Model model, Authentication authentication) {
+
+        model.addAttribute("userlogged", userService.findByUsername( authentication.getName()));
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
+
         Rent rent = rentRepository.findRentById(id);
 
         model.addAttribute("rent", rent);

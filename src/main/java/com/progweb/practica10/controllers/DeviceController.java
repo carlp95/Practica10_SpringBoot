@@ -3,7 +3,9 @@ package com.progweb.practica10.controllers;
 import com.progweb.practica10.entities.Category;
 import com.progweb.practica10.entities.Device;
 import com.progweb.practica10.repositories.DeviceRepository;
+import com.progweb.practica10.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,14 +27,24 @@ public class DeviceController {
         this.deviceRepository = deviceRepository;
     }
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView getAllDevices(Model model){
+    public ModelAndView getAllDevices(Model model, Authentication authentication){
+        model.addAttribute("userlogged", userService.findByUsername( authentication.getName()));
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
+
         model.addAttribute("deviceList", deviceRepository.findAllByOrderById());
         return new ModelAndView("devicesList");
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public ModelAndView getCreateDevice(){
+    public ModelAndView getCreateDevice(Model model, Authentication authentication){
+
+        model.addAttribute("userlogged", userService.findByUsername( authentication.getName()));
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
+
         return new ModelAndView("createDevice");
     }
 
@@ -58,7 +70,11 @@ public class DeviceController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView getEditDevice(@PathVariable(value = "id") long id, Model model){
+    public ModelAndView getEditDevice(@PathVariable(value = "id") long id, Model model, Authentication authentication){
+
+        model.addAttribute("userlogged", userService.findByUsername( authentication.getName()));
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
+
         Device device = deviceRepository.findDeviceById(id);
         model.addAttribute("device", device);
         return new ModelAndView("editDevice");

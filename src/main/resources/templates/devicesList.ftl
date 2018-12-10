@@ -17,7 +17,7 @@
         <tbody>
             <#list deviceList as device>
             <tr>
-                <td><a href="/device/edit/${device.id}">${device.name}</a></td>
+                <td><a class="enlace" href="/device/edit/${device.id}">${device.name}</a></td>
                 <td>${device.color}</td>
                 <td>${device.issueDate}</td>
                 <td>${device.company}</td>

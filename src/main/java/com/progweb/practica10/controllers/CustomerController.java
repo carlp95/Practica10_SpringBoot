@@ -4,7 +4,9 @@ import com.progweb.practica10.entities.Customer;
 import com.progweb.practica10.repositories.CustomerRepository;
 
 import com.progweb.practica10.repositories.RentRepository;
+import com.progweb.practica10.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,11 +34,15 @@ public class CustomerController {
     @Autowired
     private RentRepository rentRepository;
 
+    @Autowired
+    private UserService userService;
+
     private static String UPLOAD_FOLDER = new File("src/main/resources/static/img").getAbsolutePath();
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView getCustomers(Model model){
-
+    public ModelAndView getCustomers(Model model, Authentication authentication){
+        model.addAttribute("userlogged", userService.findByUsername( authentication.getName()));
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
         model.addAttribute("customerList", customerRepository.findAllByOrderById());
 
         return new ModelAndView("customerList");
@@ -44,8 +50,9 @@ public class CustomerController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public ModelAndView getCreateCustomer(Model model){
-
+    public ModelAndView getCreateCustomer(Model model, Authentication authentication){
+        model.addAttribute("userlogged", userService.findByUsername( authentication.getName()));
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
         return new ModelAndView("createCustomer");
     }
 
@@ -71,8 +78,9 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView getEditCustomer(@PathVariable String id, Model model){
-
+    public ModelAndView getEditCustomer(@PathVariable String id, Model model, Authentication authentication){
+        model.addAttribute("userlogged", userService.findByUsername( authentication.getName()));
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
         model.addAttribute("customer", customerRepository.findCustomerById(id));
 
         return new ModelAndView("editCustomer");
@@ -97,7 +105,10 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
-    public ModelAndView listCustomer(@PathVariable String id, Model model) {
+    public ModelAndView listCustomer(@PathVariable String id, Model model, Authentication authentication) {
+
+        model.addAttribute("userlogged", userService.findByUsername( authentication.getName()));
+        model.addAttribute("user_roles", userService.findByUsername( authentication.getName()).getRoles());
 
         Customer customer = customerRepository.findCustomerById(id);
         model.addAttribute("customer", customer);

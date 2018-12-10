@@ -1,10 +1,11 @@
 <#import "base.ftl" as b>
 
 <@b.base>
-    <table class="table table-hover table-sm table-bordered">
+    <div class="row justify-content-around">
+        <table class="table table-hover table-sm table-bordered">
         <thead>
         <tr>
-            <th><@spring.message "content.username"</th>
+            <th><@spring.message "content.username"/></th>
             <th><@spring.message "content.firstName"/></th>
             <th><@spring.message "content.lastName"/></th>
         </tr>
@@ -19,4 +20,5 @@
             </#list>
         </tbody>
     </table>
+    </div>
 </@b.base>

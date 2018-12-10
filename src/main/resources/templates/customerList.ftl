@@ -17,7 +17,7 @@
         <tbody>
             <#list customerList as customer>
             <tr>
-                <td><a href="/customer/edit/${customer.id}">${customer.id}</a></td>
+                <td>${customer.id}</td>
                 <td>${customer.firstName}</td>
                 <td>${customer.lastName}</td>
                 <td>${customer.phone}</td>
